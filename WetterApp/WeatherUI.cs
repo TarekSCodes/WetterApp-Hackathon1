@@ -55,14 +55,7 @@ public partial class WeatherUI : Form
 
         lblCity.Text = "Wetter in " + txtBoxCity.Text;
 
-        if (weathercodesDic.TryGetValue(weatherCode, out var weatherDescription))
-        {
-            lblWeatherTxt.Text = weatherDescription;
-        }
-        else
-        {
-            lblWeatherTxt.Text = "Wetterbeschreibung nicht gefunden.";
-        }
+        SetWeatherDescription(weatherCode);
 
         lblTemperature.Text = weatherData.Current.Temperature + "°C";
 
@@ -72,9 +65,8 @@ public partial class WeatherUI : Form
     /// <summary>
     /// Detects the pressing of the enter key and executes the btnCityGo_Click() method 
     /// </summary>
-    private void txtBoxCity_KeyDown(object sender, KeyEventArgs e)
+    private void TxtBoxCity_KeyDown(object sender, KeyEventArgs e)
     {
-
         if (e.KeyCode == Keys.Enter)
         {
             btnCityGo_Click(null, EventArgs.Empty);
@@ -95,11 +87,16 @@ public partial class WeatherUI : Form
     {
         switch (weathercode)
         {
-            case 0: picBoxWeather.Image = Properties.Resources.clearsky; break;
+            case 0:
+                picBoxWeather.Image = Properties.Resources.clearsky;
+                break;
+
             case 1:
             case 2:
             case 3:
-                picBoxWeather.Image = Properties.Resources.partlycloudy; break;
+                picBoxWeather.Image = Properties.Resources.partlycloudy;
+                break;
+
             case 51:
             case 53:
             case 55:
@@ -113,20 +110,41 @@ public partial class WeatherUI : Form
             case 80:
             case 81:
             case 82:
-                picBoxWeather.Image = Properties.Resources.rain; break;
+                picBoxWeather.Image = Properties.Resources.rain;
+                break;
+
             case 95:
             case 96:
             case 99:
-                picBoxWeather.Image = Properties.Resources.thunderstorm; break;
+                picBoxWeather.Image = Properties.Resources.thunderstorm;
+                break;
+
             case 71:
             case 73:
             case 75:
             case 77:
             case 85:
             case 86:
-                picBoxWeather.Image= Properties.Resources.snow; break;
+                picBoxWeather.Image = Properties.Resources.snow;
+                break;
 
             default: picBoxWeather.Image = null; break;
+        }
+    }
+
+    /// <summary>
+    /// Sets the weather descripton depending on the weather code
+    /// </summary>
+    /// <param name="weathercode"></param>
+    private void SetWeatherDescription(int weathercode)
+    {
+        if (weathercodesDic.TryGetValue(weathercode, out var weatherDescription))
+        {
+            lblWeatherTxt.Text = weatherDescription;
+        }
+        else
+        {
+            lblWeatherTxt.Text = "Wetterbeschreibung nicht gefunden.";
         }
     }
 } 

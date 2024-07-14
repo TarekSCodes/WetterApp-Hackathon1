@@ -60,7 +60,7 @@
             txtBoxCity.Size = new Size(413, 36);
             txtBoxCity.TabIndex = 1;
             txtBoxCity.TextAlign = HorizontalAlignment.Center;
-            txtBoxCity.KeyDown += txtBoxCity_KeyDown;
+            txtBoxCity.KeyDown += TxtBoxCity_KeyDown;
             // 
             // lblTemperature
             // 
