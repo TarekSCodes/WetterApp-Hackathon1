@@ -19,10 +19,7 @@ Ich habe eine kleine Desktop Wetter App geschrieben.
 Die App funktioniert soweit ganz gut, man gibt wie gewohnt seinen Wohnort ein und es wird eine Beschreibung des Wetters angezeigt.
 Zum Beispiel: Wetter in Paris, Teilweise bewölkt, 18,5°C.
 
-Der zeitliche Aufwand ist schwer zu schätzen da ich am Sonntag immer wieder unterbrochen wurde. Ich schätze aber vlt. um die 5 Stunden.
-
-Wenn ich wieder etwas Zeit habe muss ich dringend noch eine Fehlerbehandlung einbauen damit bei Eingabe unbekannter Orte die App nicht abstürzt.
-Auch werde ich dann die Anzeige weiterer Daten implementieren die für eine Wetterapp so üblich sind.
+Wenn ich wieder etwas Zeit habe werde ich die Anzeige weiterer Daten implementieren die für eine Wetterapp so üblich sind.
 
 ## Ausführen der App
 1. Klicken Sie auf der rechten Seite auf das aktuelle Release.
