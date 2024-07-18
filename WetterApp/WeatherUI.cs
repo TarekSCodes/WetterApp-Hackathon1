@@ -7,7 +7,6 @@ public partial class WeatherUI : Form
     OpenMeteo.OpenMeteoClient mateoClient = new OpenMeteo.OpenMeteoClient();
     WeatherForecast weatherData = new WeatherForecast();
 
-
     Dictionary<int, string> weathercodesDic = new Dictionary<int, string>
     {
         { 0, "Klarer Himmel" },
@@ -48,18 +47,28 @@ public partial class WeatherUI : Form
     private async void btnCityGo_Click(object sender, EventArgs e)
     {
         weatherData = await mateoClient.QueryAsync(txtBoxCity.Text);
+        if (weatherData == null)
+        {
+            lblCity.Text = "Keinen passenden Ort gefunden";
+            txtBoxCity.Text = "";
+            lblTemperature.Text = "";
+            lblWeatherTxt.Text = "";
+            picBoxWeather.Image = null;
+        }
+        else
+        {
+            int weatherCode = GetWeatherCode();
 
-        int weatherCode = GetWeatherCode();
+            SetWeatherImage(weatherCode);
 
-        SetWeatherImage(weatherCode);
+            lblCity.Text = "Wetter in " + txtBoxCity.Text;
 
-        lblCity.Text = "Wetter in " + txtBoxCity.Text;
+            SetWeatherDescription(weatherCode);
 
-        SetWeatherDescription(weatherCode);
+            lblTemperature.Text = weatherData.Current.Temperature + "°C";
 
-        lblTemperature.Text = weatherData.Current.Temperature + "°C";
-
-        txtBoxCity.Text = "";
+            txtBoxCity.Text = "";
+        }
     }
 
     /// <summary>
